@@ -256,8 +256,8 @@ class RNAudioRecorderPlayer: RCTEventEmitter, AVAudioRecorderDelegate {
                 }
 
                 reject("RNAudioPlayerRecorder", "Error occured during initiating recorder", nil)
-            } catch {
-                reject("RNAudioPlayerRecorder", "Error occured during recording", nil)
+            } catch let recordingError {
+                reject("RNAudioPlayerRecorder", recordingError.localizedDescription, nil)
             }
         }
 

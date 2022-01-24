@@ -155,7 +155,7 @@ class AudioRecorderPlayer {
   private _playerSubscription: EmitterSubscription;
   private _playerCallback: (event: PlayBackType) => void;
 
-  mmss = (secs: number): string => {
+  static mmss = (secs: number): string => {
     let minutes = Math.floor(secs / 60);
 
     secs = secs % 60;
@@ -164,13 +164,27 @@ class AudioRecorderPlayer {
     return pad(minutes) + ':' + pad(secs);
   };
 
-  mmssss = (milisecs: number): string => {
+  static mmssss = (milisecs: number): string => {
     const secs = Math.floor(milisecs / 1000);
     const minutes = Math.floor(secs / 60);
     const seconds = secs % 60;
     const miliseconds = Math.floor((milisecs % 1000) / 10);
 
     return pad(minutes) + ':' + pad(seconds) + ':' + pad(miliseconds);
+  };
+
+  /**
+   * @deprecated Please use static method `AudioRecorderPlayer.mmss` instead.
+   */
+  mmss = (secs: number): string => {
+    return AudioRecorderPlayer.mmss(secs);
+  };
+
+  /**
+   * @deprecated Please use static method `AudioRecorderPlayer.mmssss` instead.
+   */
+  mmssss = (milisecs: number): string => {
+    return AudioRecorderPlayer.mmssss(milisecs);
   };
 
   /**
